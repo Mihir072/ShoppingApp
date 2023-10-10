@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/models/catolog.dart';
+import 'package:flutter_application_1/pages/cart_page.dart';
+import 'package:flutter_application_1/utils/routes.dart';
 import 'package:flutter_application_1/widgets/themes.dart';
 import 'package:velocity_x/velocity_x.dart';
 
@@ -12,6 +14,7 @@ class HomeDetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.transparent,
         title: Text(catalog.name),
       ),
       backgroundColor: MyTheme.creamColor,
@@ -31,7 +34,7 @@ class HomeDetailPage extends StatelessWidget {
                   shape: MaterialStateProperty.all(
                     const StadiumBorder(),
                   )),
-              child: "Buy".text.white.make(),
+              child: "Add to Cart".text.white.make(),
             ).wh(100, 50)
           ],
         ).p32(),
@@ -45,26 +48,32 @@ class HomeDetailPage extends StatelessWidget {
                     child: Image.network(catalog.image))
                 .h32(context),
             Expanded(
-              child: VxArc(
-                  height: 30.0,
-                  arcType: VxArcType.convey,
-                  edge: VxEdge.top,
-                  child: Container(
-                    color: Colors.white,
-                    width: context.screenWidth,
-                    child: Column(
-                      children: [
-                        catalog.name.text.xl4
-                            .color(MyTheme.darkBluishColor)
-                            .bold
-                            .make(),
-                        catalog.desc.text.xl
-                            .textStyle(context.captionStyle)
-                            .make(),
-                        10.heightBox,
-                      ],
-                    ).py64(),
-                  )),
+              child: SingleChildScrollView(
+                child: VxArc(
+                    height: 30.0,
+                    arcType: VxArcType.convey,
+                    edge: VxEdge.top,
+                    child: Container(
+                      color: Colors.white,
+                      width: context.screenWidth,
+                      child: Column(
+                        children: [
+                          catalog.name.text.xl4
+                              .color(MyTheme.darkBluishColor)
+                              .bold
+                              .make(),
+                          catalog.desc.text.xl
+                              .textStyle(context.captionStyle)
+                              .make(),
+                          10.heightBox,
+                          catalog.imfo.text.xl
+                              .textStyle(context.captionStyle)
+                              .make()
+                              .p16(),
+                        ],
+                      ).py64(),
+                    )),
+              ),
             ),
           ],
         ),
