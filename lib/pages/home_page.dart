@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_application_1/models/catolog.dart';
 import 'package:flutter_application_1/utils/routes.dart';
-import 'package:flutter_application_1/widgets/themes.dart';
 import 'dart:convert';
 import 'package:velocity_x/velocity_x.dart';
 import '../widgets/home_widgets/Catalog_header.dart';
@@ -13,7 +12,6 @@ class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
   @override
-  // ignore: library_private_types_in_public_api
   _HomePageState createState() => _HomePageState();
 }
 
@@ -41,10 +39,10 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: MyTheme.creamColor,
+        backgroundColor: context.canvasColor,
         floatingActionButton: FloatingActionButton(
           onPressed: () => Navigator.pushNamed(context, MyRoutes.cartRoute),
-          child: Icon(CupertinoIcons.cart),
+          child: const Icon(CupertinoIcons.cart),
         ),
         body: SafeArea(
           child: Container(

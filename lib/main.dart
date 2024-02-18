@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/material.dart';
+import 'package:flutter_application_1/pages/auth_page.dart';
 import 'package:flutter_application_1/pages/cart_page.dart';
 import 'package:flutter_application_1/pages/home_page.dart';
 import 'package:flutter_application_1/pages/login_page.dart';
 import 'package:flutter_application_1/utils/routes.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
@@ -16,15 +19,16 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      themeMode: ThemeMode.light,
-      //theme: ThemeData(primarySwatch: Colors.blueGrey),
+      themeMode: ThemeMode.system,
+      theme: ThemeData(primarySwatch: Colors.blueGrey),
       darkTheme: ThemeData(
         brightness: Brightness.dark,
       ),
       routes: {
-        "/": (context) => const LoginPage(),
+        "/": (context) => const HomePage(),
+        // MyRoutes.authRoute: (context) => const AuthPage(),
+        // MyRoutes.loginRoute: (context) => LoginPage(),
         MyRoutes.homeRoute: (context) => const HomePage(),
-        MyRoutes.loginRoute: (context) => const LoginPage(),
         MyRoutes.cartRoute: (context) => const CartPage(),
       },
     );
